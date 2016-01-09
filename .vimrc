@@ -1,55 +1,89 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+"Set not compatible with vi
+set nocompatible
+filetype off
 
-" set the runtime path to include Vundle and initialize
+"For Powerline to show up
+
+let $PYTHONPATH='/usr/lib/python3.4/site-packages'
+set laststatus=2
+
+" Vundle settings
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-Plugin 'scrooloose/nerdtree.git'
-
-Plugin 'AutoClose'
-
+ 
+" Plugins go here
+ 
+Plugin 'VundleVim/Vundle.vim'
+ 
 Plugin 'altercation/vim-colors-solarized.git'
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" Avoid a name conflict with L9
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+" Plugin 'tomasr/molokai'
 
+"Plugin for completeing brackets automatically
+Plugin 'Townk/vim-autoclose' 
+
+Plugin 'scrooloose/nerdtree'
+
+Plugin 'bling/vim-airline'
+
+let g:airline_powerline_fonts = 1
+
+Plugin 'Valloric/YouCompleteMe'
+
+Plugin 'SirVer/ultisnips'
+
+Plugin 'honza/vim-snippets'
+
+Plugin 'ervandew/supertab'
+
+" Buffer Explorer
+Plugin 'fholgado/minibufexpl.vim'
+
+"  Make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSjipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>" 
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>" 
+
+" End plugin List
+
+call vundle#end()
+filetype plugin indent on
+ 
 syntax enable
-set background=dark
+set background=light
 colorscheme solarized
-set number
-set lines=40 columns=120
-
-set guioptions-=T "remove toolbar
+"colorscheme molokai
+"colorscheme Peacock
 
 set expandtab
+set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+set number
+set cindent
+ 
+au FocusLost * :wa
+ 
+if has("gui_running")
+    set guioptions-=T
+    set guioptions-=r
+    set guioptions-=L
+    set guioptions+=a
+ 
+    set lines=40 columns=150
+endif
+ 
+" Key mappings etc
+let mapleader=","
+
+" Copy and paste to system clipboard
+vnoremap <leader>y "+y
+vnoremap <leader>p "+p
+
+" Open Nerdtreee
+noremap <leader>n :NERDTree
