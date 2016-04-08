@@ -2,9 +2,10 @@
 set nocompatible
 filetype off
 
-"For Powerline to show up
+" If I want to set pythong path
+" let $PYTHONPATH='/usr/lib/python3.4/site-packages'
 
-let $PYTHONPATH='/usr/lib/python3.4/site-packages'
+" Make airline show up
 set laststatus=2
 
 " Vundle settings
@@ -14,31 +15,47 @@ call vundle#begin()
 " Plugins go here
  
 Plugin 'VundleVim/Vundle.vim'
- 
 Plugin 'altercation/vim-colors-solarized.git'
-
-" Plugin 'tomasr/molokai'
-
-"Plugin for completeing brackets automatically
+Plugin 'morhetz/gruvbox'
 Plugin 'Townk/vim-autoclose' 
-
 Plugin 'scrooloose/nerdtree'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'ervandew/supertab'
+Plugin 'fholgado/minibufexpl.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tpope/vim-fugitive'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'mattn/emmet-vim'
 
-Plugin 'bling/vim-airline'
+" End plugin List
 
+call vundle#end()
+filetype plugin indent on
+
+" Color Scheme settings
+syntax enable
+set background=dark
+colorscheme gruvbox
+
+set tabstop=4
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set number
+set cindent
+
+" Tell airline powerline fonts are available
 let g:airline_powerline_fonts = 1
 
-Plugin 'Valloric/YouCompleteMe'
-
-Plugin 'SirVer/ultisnips'
-
-Plugin 'honza/vim-snippets'
-
-Plugin 'ervandew/supertab'
-
-" Buffer Explorer
-Plugin 'fholgado/minibufexpl.vim'
-
+" Don't show the default mode
+set noshowmode
+set ttimeoutlen=40
+ 
 "  Make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
@@ -48,42 +65,29 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>" 
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>" 
-
-" End plugin List
-
-call vundle#end()
-filetype plugin indent on
- 
-syntax enable
-set background=light
-colorscheme solarized
-"colorscheme molokai
-"colorscheme Peacock
-
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set number
-set cindent
  
 au FocusLost * :wa
  
-if has("gui_running")
-    set guioptions-=T
-    set guioptions-=r
-    set guioptions-=L
-    set guioptions+=a
- 
-    set lines=40 columns=150
-endif
+set guioptions-=T
+set guioptions-=r
+set guioptions-=L
+" Disabled so people other than me can edit stuff
+" set guioptions-=m
+
+" Set spelling for text files
+autocmd BufNewFile,BufRead *.txt set spell
+autocmd BufNewFile,BufRead *.md set spell
  
 " Key mappings etc
 let mapleader=","
 
 " Copy and paste to system clipboard
 vnoremap <leader>y "+y
-vnoremap <leader>p "+p
+nnoremap <leader>p "+p
 
-" Open Nerdtreee
-noremap <leader>n :NERDTree
+noremap <leader>n :NERDTree<CR>
+noremap <leader>w <C-w>w
+noremap <leader>m :MBEFocus<CR>
+noremap <leader>h :MBEbp<CR>
+noremap <leader>l :MBEbn<CR>
+noremap <leader>q :qa<CR>

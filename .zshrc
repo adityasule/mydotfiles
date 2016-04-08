@@ -86,6 +86,7 @@ export PATH=$PATH:~/.gem/ruby/2.2.0/bin
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias potato="echo 'go away geuni'"
+alias c="clear"
 
 ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
